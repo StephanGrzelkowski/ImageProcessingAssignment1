@@ -6,15 +6,17 @@ angle = deg2rad(-angle);
 % calculate the added length of rotations
 % extra rows 
 lengthr = sin(angle) * size(image,2);
+absRows = ceil( abs(lengthr));
 % extra columns 
 lengthc = cos(deg2rad(90) - angle) * size(image,1); 
+absColumns = ceil(abs(lengthc));
 
-prependr = zeros(ceil( abs(lengthr)),size(image,2));
+prependr = zeros(absRows,size(image,2));
 prependedImage = [prependr; image]; 
 
 
-prependc = zeros(size(prependedImage,1),ceil(abs(lengthc)));
-if lengthc < 0 
+prependc = zeros(size(prependedImage,1),absColumns);
+if lengthc > 0 
     prependedImage = [prependc prependedImage];
 else 
     prependedImage = [prependedImage prependc]; 
@@ -31,17 +33,22 @@ y_mat = repmat(y_vec, 1,size(image,1));
 coord = [x_mat; y_mat; ones(1,size(image,2)*size(image,1))];
 R_affine = [cos(angle), -sin(angle), 0; sin(angle), cos(angle), 0; 0, 0, 1]; 
 new_coord = R_affine*coord;
-
+new_image = ones(size(prependedImage));
 for i = 1 : size(new_coord,2)
-    %value_coord = pixelValue(image,new_coord(1,i),new_coord(2,i),method,border);
-    value_coord = image(y_mat(i),x_mat(i));
+    value_coord = pixelValue(image,y_mat(i),x_mat(i),method,border);
+    %value_coord = image(y_mat(i),x_mat(i));
     %rotatedImage(x_mat(i)-ceil( abs(lengthr)),y_mat(i)+ceil( abs(lengthc))) = value_coord;
     
     
     %ROWS ARE THE Y (row 2 of new_coord)!!!!!! 
     
+    %if round(new_coord(2,i)+18) > 0 && round(new_coord(1,i)) > 0 
     
-   prependedImage(round(new_coord(2,i)),round(new_coord(1,i)+18)) = value_coord; 
+    new_image(round(new_coord(2,i)+182),round(new_coord(1,i))) = value_coord; 
+    %end
+    
 end
-rotatedImage = prependedImage;
+rotatedImage = new_image;
+figure; 
+imshow(rotatedImage)
 end
