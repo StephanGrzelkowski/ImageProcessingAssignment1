@@ -4,4 +4,5 @@ function bool = inImage(sizeImage,x,y)
     else 
         bool = false;
     end
+    
 end

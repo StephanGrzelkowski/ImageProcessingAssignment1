@@ -28,8 +28,7 @@ if inImage ( size ( image ) ,x_new , y_new )
         
 else
 % take nearest border pixel 
-    %predeclare x and y for the case that they are in the picture
-   
+    
     switch border
         case 'basic'
             color = 0;  
@@ -37,11 +36,17 @@ else
         case 'nearest'
             if x > size(image,1) 
                 x_new = size(image,1); 
+            elseif x < 1 
+                x_new = 1;
             end
 
             if y > size(image,2)
                 y_new = size(image,2);
+            elseif y < 1
+                y_new = 1;
             end
+            
+            
             color = image(x_new,y_new); 
 
         case 'duplicate'
