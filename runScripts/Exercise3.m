@@ -1,4 +1,16 @@
+close all 
+clear all 
+
 %% Exercise 3
+% The rotation is implemented in rotateImage and should be called with the
+% angle in degrees
+% Here we doe a simple 45 degree rotation
+% This was first done using a for loop but the function was later changed
+% to implement a faster affine transformation for the rotation. The old
+% version can be found in /helpers/rotateImageForLoop.m
+%
+% border expansion is also already implemented in the finished version 
+% The below code shows results of the first three subquestions 
 
 a = im2double(imread('cameraman.tif')); 
 r = rotateImage(a,45, 'linear','basic'); 
@@ -7,6 +19,7 @@ imshow(r);
 
 
 %% Time
+% The interpolation methods are compared using a small image rotation of 4°
 
 angle = 4;
 tic; 
@@ -17,12 +30,10 @@ tic;
 rNearest = rotateImage(a,angle, 'nearest','basic'); 
 timeNearest = toc
 
-% Nearest is slightly faster 
+% As we can see the nearest interpolation methods is faster than the linear
+% interpolation method
 
 %% Image differences 
-
-
-
 angle = 4;
  
 
@@ -80,9 +91,13 @@ subplot(133)
 imshow(doubleBack)
 title({'Double rotated image nearest Interpolation.'; 'Difference to original : '; num2str(diffNearest)})
 
+
 % after double back rotation no difference is visual between the images
 % although the distance calculation for the linear interpolation tells us
 % something else
+% curiously there seems to be no difference in images of nearest
+% interpolation methods after back rotation and the original. We tested
+% this using different angles 
 
 
 
