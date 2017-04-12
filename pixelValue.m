@@ -27,8 +27,7 @@ if inImage ( size ( image ) ,x_new , y_new )
     end %end switch
         
 else
-% take nearest border pixel 
-    
+
     switch border
         case 'basic'
             color = 0;  

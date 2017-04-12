@@ -1,0 +1,69 @@
+%stay the same
+% x1 = 1;
+% y1 = 1;
+% x2 = 1;
+% y2 = 256; 
+% x3 = 256; 
+% y3 = 1;
+
+% %enlarge 
+% x1 = 1;
+% y1 = 1;
+% x2 = 1;
+% y2 = 256; 
+% x3 = 256; 
+% y3 = 1;
+% M = 512; 
+% N = 512; 
+
+%90° rotation 
+%45° rotation counter-clockwise works with (r (xa,ya))
+% x1 = 128;
+% y1 = -53;
+% x2 = -53;
+% y2 = 128; 
+% x3 = 309; 
+% y3 = 128;
+% M  = 256; 
+% N = 256; 
+
+%45 rotation does not work 
+% x1 = -53;
+% y1 = 128;
+% x2 = 128;
+% y2 = 309; 
+% x3 = 128; 
+% y3 = -53;
+% M  = 256; 
+% N = 256; 
+
+%try 2 and 3 switched around 
+x1 = -53;
+y1 = 128;
+x2 = 128; 
+y2 = -53;
+x3 = 128;
+y3 = 309; 
+
+M  = 256; 
+N = 256; 
+
+
+r = myAffine(a,x1,y1,x2,y2,x3,y3,M,N,'linear','basic'); % gives the correct rotation matrix of affine X 
+figure; 
+subplot(121)
+imshow(a)
+plotParallelogram ( x1 , y1 , x2 , y2 , x3 , y3 ) %% THIS SHOULD BE TURNED % like it is now 
+axis on
+subplot(122)
+imshow(r)
+
+%deze waardes zijn al gedraaid 
+xx1 = 1; 
+yy1 = 1; 
+xx2 = 1;
+yy2 = N; 
+xx3 = M; 
+yy3 = 1; 
+plotParallelogram ( xx1 , yy1 , xx3 , yy3 , xx2 , yy2 )
+axis on
