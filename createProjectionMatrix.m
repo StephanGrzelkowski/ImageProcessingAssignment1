@@ -15,8 +15,8 @@ function projMatrix = createProjectionMatrix(xy, uv)
     projMatrix1 = null(A)
     
     % Reshape the vector into a 3x3 matrix
-    projMatrix = reshape(projMatrix1, 3, 3)
-    projMatrix = projMatrix'
+    projMatrix = reshape(projMatrix1, 3, 3)'
+
     
     
 
