@@ -1,6 +1,7 @@
 clear all 
 close all
 
+% add folders and subfolders of Assignment 1
 %% assignment 2 
 %% 
 % pixelValue    function takes inputs: 

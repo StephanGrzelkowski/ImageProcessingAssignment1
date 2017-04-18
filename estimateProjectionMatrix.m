@@ -1,4 +1,4 @@
-function M  = estimateProjectionMatrix(xy, XYZ)
+function [M1]  = estimateProjectionMatrix(xy, XYZ)
     % Calculation of projection Matrix
     x = XYZ(:, 1);
     y = XYZ(:, 2);
@@ -16,6 +16,9 @@ function M  = estimateProjectionMatrix(xy, XYZ)
     [U, D, V] = svd(A);
     m = V(:, end);
     % Reshape m into the 3x4 projection matrix M
-    M = reshape(m, 3, 4)';
-
+    % seems like the line of code in the book gives the wrong line up of
+    % parameters m 
+    % 
+    %M = reshape(m, 3, 4)';
+    M1 = reshape(m,[4,3])'; 
 end

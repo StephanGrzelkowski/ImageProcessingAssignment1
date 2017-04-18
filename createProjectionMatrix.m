@@ -12,10 +12,10 @@ function projMatrix = createProjectionMatrix(xy, uv)
     A = [Aoddrows; Aevenrows];
     
     % Calculate the kernel of matrix A
-    projMatrix1 = null(A)
+    projMatrix1 = null(A);
     
     % Reshape the vector into a 3x3 matrix
-    projMatrix = reshape(projMatrix1, 3, 3)'
+    projMatrix = reshape(projMatrix1, 3, 3)';
 
     
     
