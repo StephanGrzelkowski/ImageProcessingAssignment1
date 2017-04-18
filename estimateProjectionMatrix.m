@@ -14,8 +14,12 @@ function M  = estimateProjectionMatrix(xy, XYZ)
 
     % Do Singular Value Decomposition to obtain m
     [U, D, V] = svd(A);
-    m = V(:, end);
+    m = V(:, end)
     % Reshape m into the 3x4 projection matrix M
-    M = reshape(m, 3, 4)';
-
+    M = reshape(m, [4, 3])';
+    
+    % In the assignment the reshape method below was given, but this will
+    % create a 4 x 3 matrix instead of a 3x4 matrix. 
+    %  M = reshape(m, 3 ,4 )';
+    
 end
